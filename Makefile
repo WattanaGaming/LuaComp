@@ -1,14 +1,18 @@
 ifeq ($(OS),Windows_NT)
 # If you're using Windows, change the path to wherever you put LuaComp in.
-COMMAND = lua53 "./luacomp.lua"
-# COMMAND = lua53 "C:/Standalone Programs/luacomp.lua"
+# COMMAND = lua53 "./luacomp.lua"
+COMMAND = lua53 "C:/Standalone Programs/luacomp.lua"
 else
 COMMAND = luacomp
 endif
 
 build:
 	@echo Building LuaComp...
-	@${COMMAND} ./src/init.lua -O ./luacomp.lua
+	@${COMMAND} ./src/main.lua -O ./luacomp.lua
+
+test: build
+	@echo Testing...
+	@lua53 ./luacomp.lua ./examples/test.lua
 
 install:
 ifeq ($(OS),Windows_NT)
